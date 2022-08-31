@@ -1,8 +1,8 @@
 function requestOfServer(){
 
     $.ajax({
-        type: 'get',
-        url: "http://localhost:8000/hello-world?info=OlaMundo"
+        type: 'post',
+        url: "http://localhost:8000/New-hello-world?info=OlaMundo"
     }).done(function (data) {
         document.getElementById('developer').innerHTML = data.name
         document.getElementById('version').innerHTML = data.version
@@ -11,4 +11,5 @@ function requestOfServer(){
 
         $("#show-values").css('display','block')
     });
-}
+
+   }
