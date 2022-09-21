@@ -13,15 +13,31 @@ function requestOfServer(){
     });
 
    }
-
-
    function submitDataOfUser(){
         const nameOfUser = $("#name").val()
         const lasNameOfUser = $("#lastname").val()
         const ageOfUser = $("#age").val()
+        $.ajax({
+            "url": "localhost:8000/insert-data",
+            "method": "POST",
+            "timeout": 0,
+            "headers": {
+              "Content-Type": "application/json"
+            },
+            "data": JSON.stringify({
+                name:nameOfUser,
+                lastName:lasNameOfUser,
+                age:ageOfUser
+            })
+          }).done(function (response) {
+
+            if(response.success){
+                alert('Deu boa!!')
+            }
+            console.log(response);
+          });
 
         console.log(nameOfUser)
         console.log(lasNameOfUser)
         console.log(ageOfUser)
-    
-   }
+    }
