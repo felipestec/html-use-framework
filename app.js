@@ -30,8 +30,7 @@ function requestOfServer(){
                 age:ageOfUser
             })
           }).done(function (response) {
-
-            if(response.success){
+            if(response.sucess){
                 $("#sucess-record-msg").css("display","block");
 
                 $("#name").val('')
