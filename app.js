@@ -34,6 +34,7 @@ function requestOfServer(){
               
             if(response.success){
                 $("#sucess-record-msg").css("display","block");
+                $("#error-record-msg").css("display","none");
 
                 $("#name").val('')
                 $("#lastname").val('')
@@ -59,6 +60,7 @@ function requestOfServer(){
               }
 
               $("#error-record-msg").css("display","block");
+              $("#sucess-record-msg").css("display","none");
               $("#content-error-record-msg").html(errorMsg);
               $("#error-record-msg").css('width',errorWidth);
             }
