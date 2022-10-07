@@ -22,15 +22,17 @@ function requestOfServer(){
             "method": "POST",
             "timeout": 0,
             "headers": {
-              "Content-Type": "application/json"
+              "Content-Type": "application/json, charset=UTF-8"
             },
             "data": JSON.stringify({
                 name:nameOfUser,
-                lastName:lastNameOfUser,
+                last_name:lastNameOfUser,
                 age:ageOfUser
             })
           }).done(function (response) {
-            if(response.sucess){
+            console.log(response);
+              
+            if(response.success){
                 $("#sucess-record-msg").css("display","block");
 
                 $("#name").val('')
@@ -38,7 +40,27 @@ function requestOfServer(){
                 $("#age").val('')
                 
             }else{
-              alert("Deu erro!!");
+              let errorMsg;
+              let errorWidth = '350px'
+
+              if(response.missingAttribute === 'name'){
+                errorMsg = 'O campo de nome esta ausente, pode preencher?'
+                errorWidth = '415px'
+              }
+
+              if(response.missingAttribute === 'last_name'){
+                errorMsg = 'O campo de sobrenome esta ausente, pode preencher?'
+                errorWidth = '415px'
+              }
+
+              if(response.missingAttribute === 'age'){
+                errorMsg = 'O campo de idade esta ausente, pode preencher?'
+                errorWidth = '415px'
+              }
+
+              $("#error-record-msg").css("display","block");
+              $("#content-error-record-msg").html(errorMsg);
+              $("#error-record-msg").css('width',errorWidth);
             }
            
           });
@@ -49,3 +71,8 @@ function requestOfServer(){
           
           $(".sucess-record").css("display", "none");
     }
+
+    function closeErrorMsg(){
+          
+      $(".error-record").css("display", "none");
+}
